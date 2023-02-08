@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 
 import { NoteListProps, Tag } from "../utils/app.utils";
-import { NoteCard } from "./NoteCard";
+import { NoteCard } from ".";
 
-export const NoteList = ({ availableTags, notes }: NoteListProps) => {
+const NoteList = ({ availableTags, notes }: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
 
@@ -83,3 +83,5 @@ export const NoteList = ({ availableTags, notes }: NoteListProps) => {
     </>
   );
 };
+
+export default NoteList;

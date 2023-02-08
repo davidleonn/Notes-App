@@ -1,7 +1,3 @@
-export type Note = {
-  id: string;
-} & NoteData;
-
 export type RawNote = {
   id: string;
 } & RawNoteData;
@@ -12,27 +8,35 @@ export type RawNoteData = {
   tagIds: string[];
 };
 
+export type Note = {
+  id: string;
+} & NoteData;
+
 export type NoteData = {
   title: string;
   markdown: string;
   tags: Tag[];
 };
 
-type NoteFormProps = {
+export type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (rag: Tag) => void;
   availableTags: Tag[];
 };
 
-type SimplifiedNote = {
+export type SimplifiedNote = {
   tags: Tag[];
   title: string;
   id: string;
 };
 
-type NoteListProps = {
+export type NoteListProps = {
   availableTags: Tag[];
   notes: SimplifiedNote[];
+};
+
+export type NoteLayoutProps = {
+  notes: Note[];
 };
 
 export type Tag = {
