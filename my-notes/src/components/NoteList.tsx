@@ -5,10 +5,18 @@ import ReactSelect from "react-select";
 
 import { NoteListProps, Tag } from "../utils/app.utils";
 import { NoteCard } from ".";
+import EditTagsModals from "./EditTagsModal";
 
-const NoteList = ({ availableTags, notes }: NoteListProps) => {
+function NoteList({
+  availableTags,
+  notes,
+  onUpdateTag,
+  onDeleteTag,
+}: NoteListProps) {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+
+  const [editTagsModalIsOpen, seteditTagsModalIsOpen] = useState(false);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -34,7 +42,12 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
             <Link to="/new">
               <Button variant="primary">Create</Button>
             </Link>
-            <Button variant="outline-seconday">Edit Tags</Button>
+            <Button
+              onClick={() => seteditTagsModalIsOpen(true)}
+              variant="outline-seconday"
+            >
+              Edit Tags
+            </Button>
           </Stack>
         </Col>
       </Row>
@@ -80,8 +93,15 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
           </Col>
         ))}
       </Row>
+      <EditTagsModals
+        onUpdateTag={onUpdateTag}
+        onDeleteTag={onDeleteTag}
+        show={editTagsModalIsOpen}
+        handleClose={() => seteditTagsModalIsOpen(false)}
+        availableTags={availableTags}
+      />
     </>
   );
-};
+}
 
 export default NoteList;
