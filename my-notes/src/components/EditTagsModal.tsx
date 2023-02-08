@@ -9,7 +9,6 @@ import {
 } from "react-bootstrap";
 
 import { EditTagsModalProps } from "../utils/app.utils";
-import { on } from "process";
 
 const EditTagsModals = ({
   show,
